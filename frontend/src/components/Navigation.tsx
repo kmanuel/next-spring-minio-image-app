@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import InboxIcon from '@material-ui/icons/Inbox';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import Link from 'next/link';
+import UploadButton from "./UploadButton";
 
 const styles = {
     root: {
@@ -22,7 +23,7 @@ const styles = {
         marginRight: 20,
     },
     list: {
-        width: 250
+        width: '100%'
     }
 };
 
@@ -87,6 +88,7 @@ class ButtonAppBar extends React.Component<any, any> {
                         <Typography variant="h6" color="inherit" className={classes.grow}>
                             News
                         </Typography>
+                        <UploadButton/>
                     </Toolbar>
                 </AppBar>
                 <Drawer open={this.state.left} onClose={this.toggleDrawer} className={classes.drawer}>

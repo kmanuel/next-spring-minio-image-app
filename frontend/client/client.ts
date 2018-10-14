@@ -1,14 +1,28 @@
 import fetch from 'isomorphic-fetch';
 
 class Client {
-    private baseUrl: string;
+    private readonly baseUrl: string;
 
-    constructor() {
-        this.baseUrl = 'http://localhost:8080'
+    constructor(baseUrl: string = 'http://192.168.0.192:8080') {
+        this.baseUrl = baseUrl;
     }
 
-    fetchRecordings() {
-        return fetch(this.baseUrl + '/recordings').then(r => r.json());
+    fetchImages(): Promise<StorageData[]> {
+        return fetch(`${this.baseUrl}/images`).then(res => res.json());
+    }
+
+    fetchImageData(key: string) {
+        return fetch(`${this.baseUrl}/images/${key}/data`).then(res => res.json());
+    }
+
+    uploadImage(file: any) {
+        const data = new FormData();
+        data.append('file', file);
+
+        return fetch(`${this.baseUrl}/images`, {
+            method: 'POST',
+            body: data,
+        });
     }
 }
 
